@@ -39,3 +39,18 @@ function cambiar_unidad(id, valor){
 		document.las_unidades.unid_pie.value=3*valor;
 	}
 }
+function convertirGR(id){
+	var grad, rad;
+	if(id=="grados"){
+		grad = document.getElementById(elementid:"grados").value;
+		rad = (grad*Math.PI)/180;
+	}
+	else if(id=="radianes"){
+		rad=document.getElementById(elementid:"radianes").value;
+		grad=(rad*180)/Math.PI;
+	}
+	document.getElementById(elementid:"grados").value = grad;
+	document.getElementById(elementid:"radianes").value = rad;
+}
+
+
