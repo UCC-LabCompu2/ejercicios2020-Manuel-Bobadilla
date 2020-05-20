@@ -121,3 +121,96 @@ function cargarResultado() {
 	document.getElementById("dist").value= can + " " + un;
 }
 
+function dibujarcc(){
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	var yMax = canvas.height;
+	var xMax = canvas.width;
+	var margen=10;
+	ctx.fillStyle="#100";
+	ctx.fillRect(0+margen,yMax-100-margen,200,100);
+	ctx.arc(xMax/2,yMax/2,50,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fillStyle="#568";
+	ctx.fill();
+}
+var bandera;
+function dibujar(event) {
+	var canvas=document.getElementById("canvas");
+	var ctx=canvas.getContext("2d");
+	var posx=event.clientX;
+	var posy=event.clientY;
+	console.log(posx,posy);
+	canvas.onmousedown=function(){bandera=true};
+	canvas.onmouseup=function(){bandera=false};
+	if(bandera){
+		ctx.fillRect(posx,posy,5,5);
+		ctx.fill;
+	}
+}
+
+function limpiarcanvas(){
+	var canvas=document.getElementById("canvas");
+	var ctx=canvas.getContext("2d");
+	canvas.width=canvas.width;
+}
+
+function dubujarCuadricula(){
+	var canvas=document.getElementById("myCanvas");
+	var ctx=canvas.getContext("2d");
+	var alturaMax=canvas.height;
+	var anchoMax=canvas.width;
+	
+	ctx.beginPath();
+	for(var i=0;i<alturaMax;){
+		ctx.moveTo(0,i);
+		ctx.lineTo(alturaMax,i);
+		ctx.strokeStyle="#990";
+		ctx.stroke();
+		i=i+20;
+	}
+	ctx.closePath();
+	
+	ctx.beginPath();
+	for(var i=0;i<anchoMax;){
+		ctx.moveTo(i,0);
+		ctx.lineTo(i,anchoMax);
+		ctx.strokeStyle="#990";
+		ctx.stroke();
+		i=i+20;
+	}
+	ctx.closePath();
+	
+	ctx.beginPath();
+	ctx.moveTo(0,alturaMax/2);
+	ctx.lineTo(anchoMax,alturaMax/2);
+	ctx.strokeStyle="#000";
+	ctx.stroke();
+	ctx.closePath();
+	
+	ctx.beginPath();
+	ctx.moveTo(anchoMax/2,0);
+	ctx.lineTo(anchoMax/2,alturaMax);
+	ctx.strokeStyle="#000";
+	ctx.stroke();
+	ctx.closePath();
+}
+
+function dibujarimagen(posx,posy){
+	var canvas=document.getElementById("myCanvas");
+	var ctx=canvas.getContext("2d");
+	console.log(posx,posy);
+	var img = new Image();
+	img.src="images/auto.png";
+	canvas.width=canvas.width;
+	img.onload=function(){
+		ctx.drawImage(img,posx,posy);	
+	}
+
+}
+
+
+
+
+
+
